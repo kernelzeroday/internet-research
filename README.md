@@ -79,6 +79,35 @@ terminal at https://shell.panix.com. Try `ssh shell.panix.com` (guest?).
 **Other PANIX hosts:** panix1-ssh.panix.com, panix2.panix.com,
 shell-1.panix.com, shell-2.panix.com, panix5.panix.com, panix6.panix.com
 
+### oss.zone
+```
+Host:       oss.zone
+Access:     S  HTTP
+Services:   SSH, Web hosting
+OS:         NixOS
+```
+A free-to-use pubnix running NixOS. Offers SSH access, web hosting at
+`https://username.oss.zone`, and a community of users.
+
+### dimension.sh
+```
+Host:       dimension.sh
+Access:     S  G  Gmi  Email
+Services:   SSH, Email, Gopher, Gemini, static file hosting
+```
+A small free Linux pubnix open to anyone. Offers shell access, email,
+static file hosting, gopher, and gemini. Free sign-up via web form.
+
+### chunboan.zone
+```
+Host:       chunboan.zone
+Access:     S  G  Gmi
+Services:   SSH, Gopher, Gemini, Snac (fediverse)
+OS:         Debian
+```
+A neo (2025) pubnix running Debian. Offers gemini capsules, gopher holes,
+personal HTTP directories, and Snac fediverse accounts.
+
 ---
 
 ## Tilde Clubs
@@ -173,6 +202,16 @@ A simulation of the early ARPANET / 1980s computing culture. When you
 telnet in, you're dropped into a simulated historical Unix environment
 with classic commands, games (adventure, star trek, etc.), BBS-style
 message boards, and more. `telehack.com` or just `telnet telehack.com`.
+
+### CBBS/TN — The First BBS
+```
+Host:       cbbs.mitsaltair.com (port 8800)
+Access:     T
+Services:   Telnet (:8800)
+```
+The first BBS ever — Ward Christensen's CBBS from 1978, still running
+on AltairZ80 hardware. Telnet to `cbbs.mitsaltair.com 8800` for a piece
+of computing history.
 
 ---
 
@@ -274,6 +313,40 @@ Org:        Zappie Host
 - darkagesbbs.com (192.187.108.99)
 - bbs.fleethq.org (192.203.175.220)
 
+### 4d2.org BBS
+```
+Host:       bbs.4d2.org (45.43.14.195)
+Access:     T  S  G  F  IRC  Email
+Services:   Synchronet BBS (v3.x), SSH, Gopher, Finger, IRC (:6667/:6697),
+            Email, Dial-up (+1 541-442-4422)
+Org:        All Computers Are Brilliant (nonprofit), Portland, OR
+```
+A Synchronet BBS run by a 501(c)(3) nonprofit. Part of the broader 4d2.org
+project offering Matrix, Mastodon, CryptPad, PeerTube, and Lemmy. 85k+ files,
+77k+ messages across FidoNet/fsxNet/DOVE-Net/HobbyNet. Cypherpunk ethos.
+
+### Aliens' Alcove! 2 BBS
+```
+Host:       aliens.free.net.ph / newt.aliens.ph (157.245.58.138)
+Access:     T  HTTP
+Services:   WWIV BBS, Telnet, HTTP
+OS:         Linux
+Org:        DigitalOcean, Singapore
+```
+A WWIV BBS originally from the Philippines running 1992-1996, revived in 2014
+on Linux. SysOp Xenos is a WWIV developer. FidoNet node 6:759/20.
+`telnet aliens.free.net.ph` or `telnet newt.aliens.ph`.
+
+### Bartsplace Commodore BBS
+```
+Host:       bartsplace.net (136.144.155.250)
+Access:     T
+Services:   Telnet (:23), Email
+Org:        TransIP, Amsterdam, Netherlands
+```
+A Commodore-themed BBS run by Bart van Leeuwen, a Commodore 8-bit enthusiast.
+Features classic door games including "Airport". `telnet bartsplace.net`.
+
 ### More BBS Systems (not Synchronet):
 - digitaldistortionbbs.com (50.46.169.252) — Digital Distortion BBS, full retro protocols (gopher, finger, rlogin, IRC!)
 - bbs.mycrowd.ca (158.69.118.143) — MyCrowd BBS with finger, rlogin, SSH
@@ -341,6 +414,31 @@ Org:        The Flirble Organisation, Absecon, NJ
 ```
 A MUD (Multi-User Dungeon) — a text-based virtual world. One of the few
 still running on telnet.
+
+### MorgenGrauen
+```
+Host:       mg.mud.de / mud.morgengrauen.info (89.58.11.82)
+Access:     T  HTTP
+Services:   Telnet (:23)
+OS:         Linux
+Org:        netcup, Nuremberg, Germany
+Language:   German
+```
+"The largest German text-based, free online role-playing game" running since
+1992. `telnet mg.mud.de` or `telnet mud.morgengrauen.info`.
+
+### Silberland
+```
+Host:       mud.silberland.at (77.237.49.230)
+Access:     T
+Services:   Telnet (:4711)
+OS:         Linux
+Org:        Next Layer, Austria
+Language:   German
+```
+An Austrian LP-MUD (LP 3.2.1@141) running since April 1996. Fantasy-themed
+with quests, house-building, in-game mail, and newspapers.
+`telnet mud.silberland.at 4711`.
 
 ---
 

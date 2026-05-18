@@ -33,6 +33,21 @@ add_system "panix"    "Pubnixes" \
   "Use: ${BOLD}ssh shell.panix.com${NC} (any user? try 'guest' or contact them). Founded 1989 — older than Linux!" \
   "ssh shell.panix.com"
 
+add_system "oss-zone" "Pubnixes" \
+  "oss.zone — free-to-use pubnix running NixOS. Web hosting, community." \
+  "Use: ${BOLD}ssh oss.zone${NC}. Free sign-up. Runs NixOS. Web: https://oss.zone" \
+  "ssh oss.zone"
+
+add_system "dimension-sh" "Pubnixes" \
+  "dimension.sh — free Linux pubnix with email, gopher, gemini." \
+  "Use: ${BOLD}ssh dimension.sh${NC}. Free shell, email, static file hosting, gopher, gemini." \
+  "ssh dimension.sh"
+
+add_system "chunboan" "Pubnixes" \
+  "chunboan.zone — neo (2025) pubnix with gemini, gopher, snac." \
+  "Use: ${BOLD}ssh chunboan.zone${NC}. Debian-based, gemini, gopher, snac fediverse." \
+  "ssh chunboan.zone"
+
 # ── Tilde Clubs ──
 add_system "tilde-club" "Tilde Clubs" \
   "Tilde.Club — the original tilde community. SSH, gopher, finger, email, IRC, gemini." \
@@ -71,6 +86,16 @@ add_system "telehack" "Vintage" \
   "telnet telehack.com"
 
 # ── Games ──
+add_system "morgengrauen" "Games" \
+  "MorgenGrauen — the largest German text-based online RPG (MUD). Since 1992." \
+  "Use: ${BOLD}telnet mg.mud.de${NC} or ${BOLD}telnet mud.morgengrauen.info${NC}. German-language MUD. One of the oldest." \
+  "telnet mg.mud.de"
+
+add_system "silberland" "Games" \
+  "Silberland — German LP-MUD running since 1996. Fantasy theme." \
+  "Use: ${BOLD}telnet mud.silberland.at 4711${NC}. Austrian LP-MUD. Quests, houses, in-game mail." \
+  "telnet mud.silberland.at 4711"
+
 add_system "fics"     "Games" \
   "FICS — Free Internet Chess Server. Play chess against humans and computers." \
   "Use: ${BOLD}ssh freechess.org${NC} or ${BOLD}telnet freechess.org${NC}. Type 'help' or 'who' when connected." \
@@ -262,6 +287,26 @@ add_system "outerwall" "Citadel" \
   "The Outer Wall — Citadel messaging/BBS system." \
   "Telnet outerwall.net port 23. Citadel messaging server." \
   "telnet outerwall.net"
+
+add_system "4d2org" "BBS" \
+  "4d2.org BBS — Synchronet BBS, Portland OR. Nonprofit retro community." \
+  "Telnet ${BOLD}bbs.4d2.org${NC} or SSH same host. Also has gopher:70, finger:79, IRC. Dial-up too!" \
+  "telnet bbs.4d2.org"
+
+add_system "aliens-alcove" "BBS" \
+  "Aliens' Alcove! 2 BBS — WWIV BBS in the Philippines. Since 1992." \
+  "Telnet ${BOLD}aliens.free.net.ph${NC} or ${BOLD}newt.aliens.ph${NC}. WWIV on Linux, FidoNet node." \
+  "telnet aliens.free.net.ph"
+
+add_system "bartsplace" "BBS" \
+  "Bartsplace — Commodore-themed BBS with Airport door game!" \
+  "Telnet ${BOLD}bartsplace.net${NC}. Classic Commodore BBS by Bart van Leeuwen (Netherlands)." \
+  "telnet bartsplace.net"
+
+add_system "cbbs-tn" "Vintage" \
+  "CBBS/TN — THE FIRST BBS EVER (1978!), running on AltairZ80 hardware." \
+  "Telnet ${BOLD}cbbs.mitsaltair.com 8800${NC}. Ward Christensen's original BBS. Historic." \
+  "telnet cbbs.mitsaltair.com 8800"
 
 # ── Oddities & Novelty ──
 add_system "m68k-club" "Oddities" \

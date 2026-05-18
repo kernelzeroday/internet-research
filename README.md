@@ -357,6 +357,53 @@ A community system with both telnet and SSH access.
 
 ---
 
+## Oddities & Novelty Services
+
+### 68k Mac Club
+```
+Host:       m68k.club (71.19.144.188)
+Access:     S  G  Gmi
+Services:   SSH, Gopher (:70), Gemini (:1965), port 4242
+Org:        prgmr.com, San Jose, CA
+```
+A community for classic 68k Mac enthusiasts. Runs SSH, gopher, gemini.
+Join if you're into old Macs!
+
+### BNCShells.com
+```
+Host:       BNCshells.com (208.185.93.227)
+Access:     S  FTP  Email
+Services:   SSH, FTP, Email, Eggdrop/IRC shell hosting
+```
+"JEAH® UNIX Shell Accounts, Eggdrop Shells, IRCD Hosting, BNC Shells"
+A genuine commercial shell provider still operating in 2026! Old-school
+shell provider business model — sells Unix shell access, IRC bouncers,
+and eggdrop bots.
+
+### QOTD (Quote of the Day) — port 17
+Several systems still run the QOTD service:
+- **RetroDigital BBS** — rdnetbbs.com:17
+- **Duensing Digital** — bbs.duensing.digital:17
+- **Instant Whip Foods** — 74.218.70.5:17 (also runs chargen on port 19 and daytime on port 13!)
+
+Try it: `bash -c 'exec 3<>/dev/tcp/rdnetbbs.com/17; cat <&3'`
+
+### Chargen — port 19
+```
+Host:       74.218.70.5
+Services:   Chargen (:19), QOTD (:17), Daytime (:13), IMAP, HTTP
+Org:        Instant Whip Foods Inc., Grandview Heights, OH
+```
+Instant Whip Foods runs chargen, qotd, and daytime services. Chargen
+generates a endless stream of ASCII characters — was used for testing
+in the early internet. A piece of internet history still running.
+
+### UH Webcams
+Host: `https://webcams.uh.edu` — University of Houston public webcams.
+A classic public webcam since the early days of the web.
+
+---
+
 ## Network Infrastructure (Public Route Servers)
 
 These are publicly accessible telnet services for exploring internet

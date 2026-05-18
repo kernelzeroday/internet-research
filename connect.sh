@@ -263,6 +263,42 @@ add_system "outerwall" "Citadel" \
   "Telnet outerwall.net port 23. Citadel messaging server." \
   "telnet outerwall.net"
 
+# ── Oddities & Novelty ──
+add_system "m68k-club" "Oddities" \
+  "68k Mac Club — community for classic Mac enthusiasts. SSH+gopher+gemini." \
+  "SSH to m68k.club. Classic Mac community with gopher:70 and gemini:1965." \
+  "ssh m68k.club"
+
+add_system "bncshells" "Oddities" \
+  "BNCShells — commercial UNIX shell & eggdrop provider (nostalgic shell provider)." \
+  "Web: https://BNCshells.com. Still selling shell accounts in 2026!" \
+  "ssh bncshells.com"
+
+add_system "cavebbs" "BBS" \
+  "Cave BBS / Vintage Computing — Synchronet BBS + CaveMUSH." \
+  "Telnet vintagecomputing.com port 23 or 2323. Also runs cavemush.com." \
+  "telnet vintagecomputing.com"
+
+add_system "athelstan" "BBS" \
+  "Athelstan BBS — Synchronet BBS in Houston, TX. SSH+rlogin+finger." \
+  "Telnet athel.synchro.net or athelstan.org. Full retro protocol support." \
+  "telnet athel.synchro.net"
+
+add_system "apostols" "BBS" \
+  "Apostols BBS — Germany-based BBS." \
+  "Telnet bbs.apostols.org port 23." \
+  "telnet bbs.apostols.org"
+
+add_system "retrodigital" "BBS" \
+  "RetroDigital BBS — QOTD+gopher+finger+rlogin+IRC! Very retro." \
+  "Telnet rdnetbbs.com. Has quote of the day on port 17, gopher:70, finger:79." \
+  "telnet rdnetbbs.com"
+
+add_system "duensing" "BBS" \
+  "Duensing Digital — QOTD+gopher+finger+Synchronet BBS." \
+  "Telnet bbs.duensing.digital. Has QOTD:17, gopher:70, finger:79." \
+  "telnet bbs.duensing.digital"
+
 # ── Route Servers / Looking Glasses ──
 add_system "route-views" "Route Servers" \
   "Route Views (U of Oregon) — classic BGP route collector, public since 90s." \
@@ -304,6 +340,16 @@ add_system "mit-finger" "Fun" \
   "Finger MIT's SIPB — finger the MIT Student Information Processing Board." \
   "Finger: ${BOLD}finger -l sipb@mit.edu${NC}. Classic MIT finger since the 90s." \
   "finger -l sipb@mit.edu"
+
+add_system "qotd" "Fun" \
+  "Quote of the Day — grab a random quote from a QOTD server." \
+  "Connects to rdnetbbs.com port 17 (QOTD service)." \
+  "bash -c 'exec 3<>/dev/tcp/rdnetbbs.com/17; cat <&3; exec 3<&-'"
+
+add_system "chargen" "Fun" \
+  "Chargen — hit a chargen server for old times' sake (port 19)." \
+  "Instant Whip Foods runs an old-school chargen service. ASCII characters." \
+  "bash -c 'exec 3<>/dev/tcp/74.218.70.5/19; head -c 200 <&3; exec 3<&-'"
 
 # ─── System lookup ──────────────────────────────────────────────────────────
 

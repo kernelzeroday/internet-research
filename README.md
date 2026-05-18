@@ -274,6 +274,22 @@ Org:        Zappie Host
 - darkagesbbs.com (192.187.108.99)
 - bbs.fleethq.org (192.203.175.220)
 
+### More BBS Systems (not Synchronet):
+- digitaldistortionbbs.com (50.46.169.252) — Digital Distortion BBS, full retro protocols (gopher, finger, rlogin, IRC!)
+- bbs.mycrowd.ca (158.69.118.143) — MyCrowd BBS with finger, rlogin, SSH
+- qixl.jx.io (96.126.102.14) — Slumberland BBS
+- outerwall.net (64.225.31.199) — The Outer Wall, Citadel messaging/BBS system
+
+### Citadel Systems
+```
+Host:       outerwall.net (64.225.31.199)
+Access:     T  S
+Services:   Telnet, SSH, Citadel messaging, SMTP
+Org:        DigitalOcean, NJ
+```
+The Outer Wall — a Citadel messaging/BBS server. Citadel is a classic
+groupware/BBS system from the 1980s, still actively developed.
+
 ---
 
 ## Games

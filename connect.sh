@@ -243,6 +243,26 @@ add_system "macretro-ssh" "BBS" \
   "Use: ${BOLD}ssh macos.retro-os.live${NC}." \
   "ssh macos.retro-os.live"
 
+add_system "digitaldistortion" "BBS" \
+  "Digital Distortion BBS — telnet+ssh+gopher+finger+rlogin+irc" \
+  "Telnet: digitaldistortionbbs.com. Full retro protocol support." \
+  "telnet digitaldistortionbbs.com"
+
+add_system "mycrowd-bbs" "BBS" \
+  "MyCrowd BBS — has finger and rlogin too." \
+  "Telnet: bbs.mycrowd.ca. SSH and rlogin also available." \
+  "telnet bbs.mycrowd.ca"
+
+add_system "slumberland" "BBS" \
+  "Slumberland BBS — at qixl.jx.io." \
+  "Telnet port 23. SSH also available." \
+  "telnet qixl.jx.io"
+
+add_system "outerwall" "Citadel" \
+  "The Outer Wall — Citadel messaging/BBS system." \
+  "Telnet outerwall.net port 23. Citadel messaging server." \
+  "telnet outerwall.net"
+
 # ── Route Servers / Looking Glasses ──
 add_system "route-views" "Route Servers" \
   "Route Views (U of Oregon) — classic BGP route collector, public since 90s." \

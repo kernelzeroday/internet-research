@@ -33,6 +33,16 @@ add_system "panix"    "Pubnixes" \
   "Use: ${BOLD}ssh shell.panix.com${NC} (any user? try 'guest' or contact them). Founded 1989 — older than Linux!" \
   "ssh shell.panix.com"
 
+add_system "grex"     "Pubnixes" \
+  "Grex — free public UNIX since 1991, Ann Arbor MI. OpenBSD. Nonprofit." \
+  "Use: ${BOLD}ssh -l newuser grex.org${NC} to register (like SDF). Free shell accounts since 1991! Email, games, conferencing." \
+  "ssh -l newuser grex.org"
+
+add_system "grex-login" "Pubnixes" \
+  "Grex — connect with YOUR account (already registered)" \
+  "Use: ${BOLD}ssh grex.org${NC} once registered." \
+  "ssh grex.org"
+
 add_system "oss-zone" "Pubnixes" \
   "oss.zone — free-to-use pubnix running NixOS. Web hosting, community." \
   "Use: ${BOLD}ssh oss.zone${NC}. Free sign-up. Runs NixOS. Web: https://oss.zone" \
@@ -120,6 +130,21 @@ add_system "nanvaent" "Games" \
   "Nanvaent MUD — text-based virtual world (Multi-User Dungeon)." \
   "Use: ${BOLD}telnet lost.nanvaent.org${NC}. One of the few classic MUDs still running." \
   "telnet lost.nanvaent.org"
+
+add_system "darkcastle" "Games" \
+  "Dark Castle MUD — DIKU MUD running since 1992! Free fantasy RPG." \
+  "Use: ${BOLD}telnet dcastle.org${NC}. Also on ports 6666 and 6969. Quests, clans, PvP, casino." \
+  "telnet dcastle.org"
+
+add_system "empiremud" "Games" \
+  "EmpireMUD — map-based CircleMUD sandbox. Build your empire!" \
+  "Use: ${BOLD}telnet empiremud.net 4000${NC}. 142k+ rooms, 280+ skills, building/crafting." \
+  "telnet empiremud.net 4000"
+
+add_system "prophecy-mud" "Games" \
+  "Prophecy MUD — set in David Eddings' Belgariad universe. Since 1995." \
+  "Use: ${BOLD}telnet mud.prophecy.lu 4000${NC}. Luxembourg-based MUD." \
+  "telnet mud.prophecy.lu 4000"
 
 add_system "rit-games" "Games" \
   "RIT CSH Games — nethack server at Rochester Institute of Technology." \
@@ -318,6 +343,11 @@ add_system "bncshells" "Oddities" \
   "BNCShells — commercial UNIX shell & eggdrop provider (nostalgic shell provider)." \
   "Web: https://BNCshells.com. Still selling shell accounts in 2026!" \
   "ssh bncshells.com"
+
+add_system "kermit" "Oddities" \
+  "Kermit Server (quux.org) — last public Internet Kermit Service Daemon." \
+  "Use: ${BOLD}telnet kermit.quux.org 1649${NC}. Login as 'anonymous'. Possibly the last public IKSD!" \
+  "telnet kermit.quux.org 1649"
 
 add_system "cavebbs" "BBS" \
   "Cave BBS / Vintage Computing — Synchronet BBS + CaveMUSH." \

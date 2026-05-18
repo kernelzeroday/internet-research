@@ -79,6 +79,22 @@ terminal at https://shell.panix.com. Try `ssh shell.panix.com` (guest?).
 **Other PANIX hosts:** panix1-ssh.panix.com, panix2.panix.com,
 shell-1.panix.com, shell-2.panix.com, panix5.panix.com, panix6.panix.com
 
+### Grex (Cyberspace Communications)
+```
+Host:       grex.org (35.8.27.177)
+Access:     S  HTTP
+Services:   SSH (:22), Email, Web hosting, IRC
+OS:         OpenBSD
+Org:        Cyberspace Communications (nonprofit), Ann Arbor, MI
+Register:   ssh -l newuser grex.org
+Login:      ssh grex.org
+```
+A public-access Unix system founded in 1991. Free shell accounts via
+`ssh -l newuser grex.org`. Account activates in a few minutes. Provides
+email, IRC, games (nethack), conferencing (Backtalk/Fronttalk), and
+web hosting. Paid membership ($2/month) unlocks outbound SSH. Operated
+by a nonprofit.
+
 ### oss.zone
 ```
 Host:       oss.zone
@@ -415,6 +431,38 @@ Org:        The Flirble Organisation, Absecon, NJ
 A MUD (Multi-User Dungeon) — a text-based virtual world. One of the few
 still running on telnet.
 
+### Dark Castle MUD
+```
+Host:       dcastle.org (72.14.179.114)
+Access:     T  HTTP
+Services:   Telnet (:23, :6666, :6969)
+Org:        Linode, Richardson, TX
+```
+A DIKU MUD running since 1992. Free fantasy RPG with clans, quests,
+PvP, and a casino. Open sourced on GitHub in 2020.
+`telnet dcastle.org`.
+
+### Prophecy MUD
+```
+Host:       mud.prophecy.lu (213.135.235.227)
+Access:     T
+Services:   Telnet (:4000)
+Org:        P&T, Differdange, Luxembourg
+```
+A MUD set in David Eddings' *Belgariad* and *Malloreon* universe.
+Running since 1995. `telnet mud.prophecy.lu 4000`.
+
+### EmpireMUD
+```
+Host:       empiremud.net
+Access:     T
+Services:   Telnet (:4000)
+```
+A map-based CircleMUD sandbox. Build your own empire in a persistent
+world with 142k+ rooms, 280+ skills, crafting, mounted combat, and
+instanced dungeons. Supports visually impaired players.
+`telnet empiremud.net 4000`.
+
 ### MorgenGrauen
 ```
 Host:       mg.mud.de / mud.morgengrauen.info (89.58.11.82)
@@ -477,6 +525,17 @@ Services:   SSH, FTP, Email, Eggdrop/IRC shell hosting
 A genuine commercial shell provider still operating in 2026! Old-school
 shell provider business model — sells Unix shell access, IRC bouncers,
 and eggdrop bots.
+
+### Kermit Server (quux.org)
+```
+Host:       kermit.quux.org
+Access:     T
+Services:   Internet Kermit Service (:1649)
+```
+Possibly the last public Internet Kermit Service Daemon (IKSD) in
+existence, run by John Goerzen. Login with `anonymous` and any password.
+Offers file access via the Kermit protocol — a relic from the 1980s.
+`telnet kermit.quux.org 1649`.
 
 ### QOTD (Quote of the Day) — port 17
 Several systems still run the QOTD service:

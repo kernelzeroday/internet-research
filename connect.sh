@@ -146,6 +146,26 @@ add_system "prophecy-mud" "Games" \
   "Use: ${BOLD}telnet mud.prophecy.lu 4000${NC}. Luxembourg-based MUD." \
   "telnet mud.prophecy.lu 4000"
 
+add_system "lostsouls" "Games" \
+  "Lost Souls MUD — medieval fantasy MUD running since 1990. One of the oldest!" \
+  "Use: ${BOLD}telnet lostsouls.org${NC}. 36+ years old, still actively developed." \
+  "telnet lostsouls.org"
+
+add_system "dragonheart" "Games" \
+  "Dragonheart MUD — classic MUD since 1995. Permadeath + Order vs Chaos PvP." \
+  "Use: ${BOLD}telnet dhmud.org 8989${NC}. Four classes, hundreds of areas." \
+  "telnet dhmud.org 8989"
+
+add_system "mozartmud" "Games" \
+  "Mozart MUD — hand-built fantasy MUD since 1993." \
+  "Use: ${BOLD}telnet mozartmud.net 4500${NC}. Hundreds of skills/spells, unique zones." \
+  "telnet mozartmud.net 4500"
+
+add_system "zebedee" "Games" \
+  "Zebedee MUD — puzzle-based fantasy MUD since ~1993." \
+  "Use: ${BOLD}telnet zebedee-mud.org 7000${NC}. Tolkien/Dragonlance/Warhammer inspired." \
+  "telnet zebedee-mud.org 7000"
+
 add_system "rit-games" "Games" \
   "RIT CSH Games — nethack server at Rochester Institute of Technology." \
   "Use: ${BOLD}telnet games-ng.csh.rit.edu${NC}. Run by RIT's Computer Science House." \

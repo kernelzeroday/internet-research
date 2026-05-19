@@ -463,6 +463,45 @@ world with 142k+ rooms, 280+ skills, crafting, mounted combat, and
 instanced dungeons. Supports visually impaired players.
 `telnet empiremud.net 4000`.
 
+### Lost Souls MUD
+```
+Host:       lostsouls.org
+Access:     T
+Services:   Telnet (:23)
+```
+One of the oldest continuously running MUDs, established in 1990.
+Medieval fantasy, original content, still actively developed for 36+
+years. `telnet lostsouls.org`.
+
+### Dragonheart MUD
+```
+Host:       dhmud.org
+Access:     T
+Services:   Telnet (:8989)
+```
+Permadeath MUD since 1995 with Order vs Chaos PvP. Four classes,
+hundreds of areas, soul ember resurrection system.
+`telnet dhmud.org 8989`.
+
+### Mozart MUD
+```
+Host:       mozartmud.net
+Access:     T
+Services:   Telnet (:4500)
+```
+Hand-built fantasy MUD since 1993. Unique zones, hundreds of skills
+and spells, many races and classes. `telnet mozartmud.net 4500`.
+
+### Zebedee MUD
+```
+Host:       zebedee-mud.org
+Access:     T
+Services:   Telnet (:7000)
+```
+Puzzle-based fantasy MUD since ~1993. Influenced by Tolkien,
+Dragonlance, and Warhammer. Party-based play.
+`telnet zebedee-mud.org 7000`.
+
 ### MorgenGrauen
 ```
 Host:       mg.mud.de / mud.morgengrauen.info (89.58.11.82)

@@ -1,0 +1,37 @@
+========================================
+GREX REGISTRATION DEMO
+Timestamp: 2026-05-18 18:07:05
+========================================
+Username: test-grx-54752
+Host:     grex.org:22
+========================================
+
+========================================
+GREX REGISTRATION DEMO
+Timestamp: 2026-05-18 18:08:48
+========================================
+Username: test-grx-79848
+Host:     grex.org:22
+========================================
+
+\[SERVER\] Warning: Permanently added 'grex.org' (ED25519) to the list of known hosts.
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+newuser@grex.org's password:
+\[UNEXPECTED: Already at password prompt\]
+TIMEOUT: No password prompt
+========================================
+GREX REGISTRATION DEMO
+Timestamp: 2026-05-18 18:09:51
+========================================
+Username: test-grx-80455
+Host:     grex.org:22
+========================================
+
+\[SERVER\] Warning: Permanently added 'grex.org' (ED25519) to the list of known hosts.
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+newuser@grex.org's password:
+TIMEOUT: No password prompt

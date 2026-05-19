@@ -15,8 +15,8 @@ add_system() { SYSTEMS+=("$1|$2|$3|$4|$5"); }
 # ── Pubnixes (Public Access Unix) ──
 add_system "sdf"     "Pubnixes" \
   "SDF Public Access UNIX System — free shell accounts since 1987" \
-  "Use: ${BOLD}ssh -l newuser sdf.org${NC} to register. After registering, just ssh sdf.org with your new username." \
-  "ssh -l newuser sdf.org"
+  "Use: ${BOLD}ssh -l new sdf.org${NC} to register. After registering, just ssh sdf.org with your new username." \
+  "ssh -l new sdf.org"
 
 add_system "sdf-login" "Pubnixes" \
   "SDF — connect with YOUR account (already registered)" \
@@ -57,6 +57,11 @@ add_system "chunboan" "Pubnixes" \
   "chunboan.zone — neo (2025) pubnix with gemini, gopher, snac." \
   "Use: ${BOLD}ssh chunboan.zone${NC}. Debian-based, gemini, gopher, snac fediverse." \
   "ssh chunboan.zone"
+
+add_system "m-net"      "Pubnixes" \
+  "m-net.arbornet.org — FreeBSD pubnix, also hosts SDF's vintage UNIX systems." \
+  "Use: ${BOLD}ssh guest@m-net.arbornet.org${NC}. Another living internet archive." \
+  "ssh guest@m-net.arbornet.org"
 
 # ── Tilde Clubs ──
 add_system "tilde-club" "Tilde Clubs" \

@@ -1,0 +1,8 @@
+========================================
+ BANNER CAPTURE
+ Host:      cbbs.mitsaltair.com
+ Port:      8800
+ Type:      telnet
+ Timestamp: 2026-05-18 18:01:33
+ ========================================
+TIMEOUT: No response from cbbs.mitsaltair.com:8800

@@ -1,0 +1,38 @@
+========================================
+ BANNER CAPTURE
+ Host:      telehack.com
+ Port:      23
+ Type:      telnet
+ Timestamp: 2026-05-18 18:01:24
+ ========================================
+--- BANNER ---
+Trying 64.13.139.230...
+Connected to telehack.com.
+Escape character is '^]'.
+
+Connected to TELEHACK port 151
+
+It is 6:01 pm on Monday, May 18, 2026 in Mountain View, California, USA.
+There are 126 local users. There are 26648 hosts on the network.
+
+May the command line live forever.
+
+Command, one of the following:
+  ?            a2           ac           advent       basic        bf
+  cal          callsign     cat          ching        clock        cowsay
+  date         ddate        delta        diff         eliza        exit
+  factor       figlet       gif          grep         head         help
+  joke         login        mac          marquee      minesweeper  netstat
+  newuser      notes        phoon        pig          ping         pong
+  primes       privacy      qr           rain         recover      rfc
+  rig          rockets      run          salvo        sleep        starwars
+  sudoku       tail         today        traceroute   units        uptime
+  usenet       uuplot       weather      when         zc           zork
+
+More commands available after login. Type HELP for a detailed command list.
+Type NEWUSER to create an account
+--- END BANNER ---
+
+[Detected: registration-flow]
+
+========================================

@@ -3,6 +3,11 @@
 *.swo
 *~
 
-# Screenshots/captures (keep .gitkeep)
+# Screenshots/captures (keep .gitkeep and manual docs)
 screenshots/*
 !screenshots/.gitkeep
+!screenshots/*.md
+!screenshots/vintage/
+!screenshots/vintage/*.md
+!screenshots/banners/
+!screenshots/banners/*.txt

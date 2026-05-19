@@ -1,0 +1,8 @@
+========================================
+ BANNER CAPTURE
+ Host:      shell.panix.com
+ Port:      22
+ Type:      ssh
+ Timestamp: 2026-05-18 18:01:15
+ ========================================
+TIMEOUT: No response from shell.panix.com:22

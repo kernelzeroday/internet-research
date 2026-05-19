@@ -1,0 +1,156 @@
+#!/usr/bin/env expect -f
+# probe-vintage.exp - Connect to SDF vintage system, login as guest, capture
+#
+# Usage: expect probe-vintage.exp <menu-letter> [submenu] [outfile]
+#   expect probe-vintage.exp a          # Multics (main menu)
+#   expect probe-vintage.exp f unix     # HP/UX (UNIX menu)
+
+set timeout 30
+
+if { $argc < 1 } {
+    puts "Usage: expect probe-vintage.exp <letter> \[submenu\] \[outfile\]"
+    exit 1
+}
+
+set letter [lindex $argv 0]
+set submenu [lindex $argv 1]
+set outfile [lindex $argv 2]
+
+proc emit {text} {
+    global outfile
+    puts -nonewline $text
+    if { $outfile != "" } {
+        if { [catch {set fh [open $outfile a]}] } { return }
+        puts -nonewline $fh $text
+        close $fh
+    }
+}
+
+emit "=== CONNECTING TO SDF VINTAGE SYSTEM \[$letter\] ===\n"
+
+spawn -noecho ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+    -o ConnectTimeout=10 -l menu sdf.org
+
+expect {
+    -re "Your choice" { }
+    -nocase -re "return|enter" { send "\r"; exp_continue }
+    timeout {
+        emit "TIMEOUT: Could not reach SDF menu\n"
+        exit 1
+    }
+}
+
+# Navigate submenu
+if { $submenu == "unix" || $submenu == "1" } {
+    emit "\[NAV\] Selecting UNIX sub-menu (1)\n"
+    send "1\r"
+    expect {
+        -re "Your choice" { }
+        timeout {
+            emit "TIMEOUT: Could not reach UNIX menu\n"
+            exit 1
+        }
+    }
+}
+
+# Select target system
+emit "\[NAV\] Selecting system '$letter'\n"
+send "${letter}\r"
+
+# Handle the info screen and connection
+expect {
+    -re "Guest access" {
+        emit "\[INFO\] Guest access screen displayed\n"
+        # Try pressing enter to proceed
+        sleep 1
+        send "\r"
+        exp_continue
+    }
+    -re "Trying.*Connected" {
+        emit "\[INFO\] Network connection established\n"
+        exp_continue
+    }
+    -re "login:|Login:|Username:|username:|LOGIN" {
+        emit "\[LOGIN\] Login prompt reached\n"
+        # Send guest credentials
+        send "LCM\r"
+        expect {
+            -re "assword:|Password:|pass" {
+                emit "\[LOGIN\] Sending password\n"
+                send "lcmguest\r"
+                exp_continue
+            }
+            -re "login:|Login:|:" {
+                # Prompt came back, try another approach
+                emit "\[LOGIN\] Re-prompted, trying alternate login\n"
+                send "guest\r"
+                expect {
+                    -re "assword" { send "guest\r"; exp_continue }
+                    timeout { }
+                }
+            }
+            timeout {
+                emit "\[LOGIN\] No password prompt (may be logged in)\n"
+            }
+        }
+        exp_continue
+    }
+    -re "assword:|Password:|PASSWORD" {
+        # Password prompt without login prompt first
+        emit "\[LOGIN\] Sending password\n"
+        send "lcmguest\r"
+        exp_continue
+    }
+    -re "%|#|\\\$|>" {
+        emit "\[PROMPT\] Got system prompt: $expect_out(buffer)\n"
+        set prompt_found 1
+    }
+    -re "Welcome to|Copyright|Connected|You are now" {
+        emit "\[BANNER\] $expect_out(buffer)\n"
+        exp_continue
+    }
+    -re "Connection refused|connection refused|Connection closed|closed by remote" {
+        emit "\[ERROR\] Connection refused\n"
+        exit 1
+    }
+    timeout {
+        emit "\[TIMEOUT\] Final buffer: $expect_out(buffer)\n"
+    }
+}
+
+# If we got a prompt, try some commands
+if { [info exists prompt_found] } {
+    emit "--- COMMANDS ---\n"
+
+    # Try help
+    send "help\r"
+    expect {
+        -re "%|#|\\\$|>" {
+            emit "\[HELP\] $expect_out(buffer)\n"
+        }
+        timeout { emit "\[HELP\] No response\n" }
+    }
+    sleep 0.5
+
+    # Try date
+    send "date\r"
+    expect {
+        -re "%|#|\\\$|>" {
+            emit "\[DATE\] $expect_out(buffer)\n"
+        }
+        timeout { emit "\[DATE\] No response\n" }
+    }
+    sleep 0.5
+
+    # Try uname
+    send "uname -a\r"
+    expect {
+        -re "%|#|\\\$|>" {
+            emit "\[UNAME\] $expect_out(buffer)\n"
+        }
+        timeout { emit "\[UNAME\] No response\n" }
+    }
+}
+
+emit "\n=== DISCONNECTING ===\n"
+close

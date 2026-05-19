@@ -3,17 +3,10 @@
 #
 # Usage: ./probes/register-sdf.exp [outfile]
 #
-# Environment variables (all optional):
-#   DEMO_USER    - Desired username (default: test-sdf-XXXX random)
-#   DEMO_PASS    - Password (default: generated)
-#   DEMO_EMAIL   - Email (default: none/blank)
-#   BANNER_TIMEOUT - Seconds to wait per prompt (default: 15)
+# Flow: ssh new@sdf.org -> press RETURN -> mkacct login: new / Password: new
+#       -> registration menu -> username/password/email/shell -> account created
 #
-# Set DEMO_EMAIL=skip to leave email blank.
-# Set DEMO_PASS=prompt to type it manually.
-#
-# WARNING: This creates a REAL account on SDF. Use responsibly.
-# SDF limits: accounts inactive 90 days are auto-deleted.
+# Environment: DEMO_USER, DEMO_PASS, DEMO_EMAIL (all optional), BANNER_TIMEOUT
 
 set timeout 15
 if { [info exists env(BANNER_TIMEOUT)] } { set timeout $env(BANNER_TIMEOUT) }
@@ -22,28 +15,18 @@ set outfile [lindex $argv 0]
 set demo_host "sdf.org"
 set demo_port 22
 
-# Generate random username if not set
-if { [info exists env(DEMO_USER)] } {
-    set demo_user $env(DEMO_USER)
-} else {
-    set rand [expr {int(rand() * 90000) + 10000}]
-    set demo_user "test-sdf-$rand"
-}
+# Generate random credentials if not set
+if { [info exists env(DEMO_USER)] } { set demo_user $env(DEMO_USER)
+} else { set demo_user "u[expr {int(rand()*9000000)+1000000}]" }
 
-if { [info exists env(DEMO_PASS)] } {
-    set demo_pass $env(DEMO_PASS)
-} else {
-    set rand2 [expr {int(rand() * 900000000) + 100000000}]
-    set demo_pass "demo$rand2"
-}
+if { [info exists env(DEMO_PASS)] } { set demo_pass $env(DEMO_PASS)
+} else { set demo_pass "demo[expr {int(rand()*900000000)+100000000}]" }
 
-if { [info exists env(DEMO_EMAIL)] } {
-    set demo_email $env(DEMO_EMAIL)
-} else {
-    set demo_email ""
-}
+if { [info exists env(DEMO_EMAIL)] } { set demo_email $env(DEMO_EMAIL)
+} else { set demo_email "" }
 
 set timestamp [clock format [clock seconds] -format "%Y-%m-%d %H:%M:%S"]
+set registered 0
 
 proc emit {text} {
     global outfile
@@ -60,108 +43,233 @@ emit "SDF REGISTRATION DEMO\n"
 emit "Timestamp: $timestamp\n"
 emit "========================================\n"
 emit "Username: $demo_user\n"
+emit "Password: $demo_pass\n"
 emit "Host:     $demo_host:$demo_port\n"
 emit "========================================\n\n"
 
 spawn -noecho ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
-    -o ConnectTimeout=10 -l newuser $demo_host
+    -o ConnectTimeout=10 -l new $demo_host
 
+emit "\\\[SSH\\\] Connecting...\n"
+
+# ── Phase 1: Press RETURN to trigger mkacct connection ───────────────────
 expect {
-    -re "(?i)username|login|name.*:" {
-        emit "[SERVER] $expect_out(buffer)\n"
-        sleep 0.5
-        send "$demo_user\r"
-    }
-    -re "(?i)password:" {
-        emit "[SERVER] $expect_out(buffer)\n"
-        emit "[UNEXPECTED: Already at password prompt]\n"
+    -timeout 10
+    -re "(?i)return|hit enter" {
+        emit "\\\[MKACCT\\\] RETURN -> connect\n"
+        sleep 0.3
+        send "\r"
     }
     timeout {
-        emit "TIMEOUT: SDF not responding\n"
-        exit 1
-    }
-    eof {
-        emit "EOF: Connection closed by server\n"
+        emit "TIMEOUT: No RETURN prompt\n"
         exit 1
     }
 }
 
-# Expect password prompt
+# ── Phase 2: Wait for mkacct login prompt ────────────────────────────────
 expect {
-    -re "(?i)password|passwd" {
-        emit "[SERVER] $expect_out(buffer)\n"
+    -timeout 20
+    -re "login:\\s*" {
+        emit "\\\[MKACCT\\\] login: 'new'\n"
         sleep 0.3
-        send "$demo_pass\r"
+        send "new\r"
     }
     timeout {
-        emit "TIMEOUT: No password prompt\n"
+        emit "TIMEOUT: No mkacct login\n"
         exit 1
     }
 }
 
-# Expect password confirmation
+# ── Phase 3: Handle BACKSPACE, intro [RETURN], then transition to reg menu ──
+emit "\\\[MKACCT\\\] waiting for backspace prompt...\n"
 expect {
-    -re "(?i)again|confirm|re-enter|verify" {
-        emit "[SERVER] $expect_out(buffer)\n"
+    -timeout 20
+    -re "BACKSPACE" {
+        emit "\\\[MKACCT\\\] sending BACKSPACE\n"
         sleep 0.3
-        send "$demo_pass\r"
+        send "\b"
+        exp_continue
     }
-    timeout {
-        emit "TIMEOUT: No password confirmation prompt\n"
-        exit 1
-    }
-}
-
-# Expect email prompt (usually optional)
-expect {
-    -re "(?i)mail|email|contact" {
-        emit "[SERVER] $expect_out(buffer)\n"
+    -re "\\\[RETURN\\\]" {
+        emit "\\\[MKACCT\\\] pressing RETURN (intro)\n"
         sleep 0.3
-        if { $demo_email == "skip" || $demo_email == "" } {
-            send "\r"
-        } else {
-            send "$demo_email\r"
-        }
-    }
-    timeout {
-        emit "TIMEOUT or no email prompt (OK)\n"
-    }
-}
-
-# Expect shell selection or further prompts
-expect {
-    -re "(?i)shell|choice|select|option|default|continue|yes/no" {
-        emit "[SERVER] $expect_out(buffer)\n"
-        sleep 0.3
-        # Take defaults
         send "\r"
         exp_continue
     }
-    -re "(?i)success|created|welcome|account|thank" {
-        emit "[SERVER] $expect_out(buffer)\n"
-        emit "\n[REGISTRATION SUCCESSFUL]\n"
-    }
-    -re "(?i)error|fail|invalid|taken|exist" {
-        emit "[SERVER] $expect_out(buffer)\n"
-        emit "\n[REGISTRATION FAILED]\n"
-    }
+    # Phase 3 does NOT handle login prompt - Phase 4 handles it
     timeout {
-        emit "TIMEOUT: Registration flow unfinished\n"
-        # Capture what we got
-        emit "[PARTIAL] $expect_out(buffer)\n"
+        # End of Phase 3 - transition to registration menu
+        emit "\\\[MKACCT\\\] mkacct login complete, entering registration...\n"
     }
 }
 
-# Try to capture any final message
+# ── Phase 4: Registration menu ──────────────────────────────────────────
+emit "\\\[REG\\\] Waiting for registration menu...\n"
+set reg_attempts 0
 expect {
-    -re ".+" {
-        emit "[FINAL] $expect_out(buffer)\n"
+    -timeout 60
+    # FEP Command prompt - type mkacct to start registration
+    -re "(?i)FEP.*Command|FEP>|mkacct>" {
+        if { $reg_attempts >= 3 } {
+            emit "\\\[REG\\\] too many FEP attempts, aborting\n"
+        } else {
+            incr reg_attempts
+            emit "\\\[REG\\\] FEP prompt, sending 'mkacct'\n"
+            sleep 0.3
+            send "mkacct\r"
+        }
+        exp_continue
     }
+    # Username prompt (after mkacct starts)
+    -re "(?i)(enter|choose|pick|select|what).*(username|login|name)" {
+        emit "\\\[REG\\\] username: $demo_user\n"
+        sleep 0.5
+        send "$demo_user\r"
+        exp_continue
+    }
+    # Password prompt (for demo account)
+    -re "assword.*:" {
+        emit "\\\[REG\\\] password\n"
+        sleep 0.3
+        send "$demo_pass\r"
+        exp_continue
+    }
+    # Password confirm
+    -re "(?i)(again|confirm|re-enter|verify)" {
+        emit "\\\[REG\\\] confirm password\n"
+        sleep 0.3
+        send "$demo_pass\r"
+        exp_continue
+    }
+    # Email prompt
+    -re "(?i)(what.*email|enter.*email|email.*address|contact.*email|mail.*address)" {
+        emit "\\\[REG\\\] email\n"
+        sleep 0.3
+        if { $demo_email == "skip" || $demo_email == "" } {
+            send "\r"
+        } else { send "$demo_email\r" }
+        exp_continue
+    }
+    # Shell choice / terms / defaults
+    # Policy agreement - must answer "yes"
+    # Use a state flag so we only agree once
+    -re "I agree with your policy.*\\(yes/no\\)" {
+        if { [info exists agreed] } {
+            emit "\\\[REG\\\] policy already agreed, skipping\n"
+        } else {
+            set agreed 1
+            emit "\\\[REG\\\] agreeing to policy\n"
+            sleep 0.3
+            send "yes\r"
+        }
+        exp_continue
+    }
+    # Shell choice / continue / defaults (just hit Enter)
+    -re "(?i)(shell|choice|select|option|default|continue)" {
+        emit "\\\[REG\\\] default (Enter)\n"
+        sleep 0.3
+        send "\r"
+        exp_continue
+    }
+    # Personal info prompts
+    -re "(?i)Your Name\\s*:" {
+        emit "\\\[REG\\\] name (blank)\n"
+        sleep 0.3
+        send "\r"
+        exp_continue
+    }
+    -re "(?i)Year of Birth" {
+        emit "\\\[REG\\\] birth year: 1990\n"
+        sleep 0.3
+        send "1990\r"
+        exp_continue
+    }
+    -re "(?i)Postal.*Zip|ZIP.*Code" {
+        emit "\\\[REG\\\] zip: 00000\n"
+        sleep 0.3
+        send "00000\r"
+        exp_continue
+    }
+    -re "(?i)(K-12|faculty|student|school|university).*\\\(y/n\\\)|\\\(y/n\\\).*student" {
+        emit "\\\[REG\\\] not student (n)\n"
+        sleep 0.3
+        send "n\r"
+        exp_continue
+    }
+    -re "(?i)Amateur Radio.*\\\(y/n\\\)" {
+        emit "\\\[REG\\\] not ham (n)\n"
+        sleep 0.3
+        send "n\r"
+        exp_continue
+    }
+    -re "(?i)DJ.*\\\(y/n\\\)" {
+        emit "\\\[REG\\\] not DJ (n)\n"
+        sleep 0.3
+        send "n\r"
+        exp_continue
+    }
+    # Account creation confirmation - MUST say yes!
+    -re "(?i)Create.*account.*\\\(y/n\\\)" {
+        emit "\\\[REG\\\] confirming account creation (y)\n"
+        sleep 0.3
+        send "y\r"
+        exp_continue
+    }
+    # Generic (y/n) questions - answer no
+    -re "\\\(y/n\\\)" {
+        emit "\\\[REG\\\] y/n -> n\n"
+        sleep 0.3
+        send "n\r"
+        exp_continue
+    }
+    # Free-text questions
+    -re "(?i)(hear about SDF|how.*find.*us|referral)" {
+        emit "\\\[REG\\\] referral: internet\n"
+        sleep 0.3
+        send "internet\r"
+        exp_continue
+    }
+    # RETURN prompts
+    -re "\\\[RETURN\\\]" {
+        emit "\\\[REG\\\] RETURN\n"
+        sleep 0.3
+        send "\r"
+        exp_continue
+    }
+    # Success
+    -re "(?i)(Welcome to.*SDF|account.*created|successfully|registration.*complete|Creating.*login.*Established)" {
+        emit "\\\[REG\\\] $expect_out(buffer)\n"
+        emit "\\\[REGISTRATION SUCCESSFUL\\\]\n"
+        set registered 1
+        # Registration done - exit expect loop, don't follow auto-login
+    }
+    # Failure
+    -re "(?i)(aborted|abort)" {
+        emit "\\\[REG\\\] MKACCT aborted: $expect_out(buffer)\n"
+        emit "\\\[REGISTRATION FAILED - aborted\\\]\n"
+    }
+    -re "(?i)(error|fail|invalid|taken|already.*exist|cannot.*create|no need)" {
+        emit "\\\[REG\\\] $expect_out(buffer)\n"
+        emit "\\\[REGISTRATION FAILED\\\]\n"
+    }
+    timeout {
+        emit "TIMEOUT: Registration flow\n"
+        catch {emit "Buffer: $expect_out(buffer)\n"}
+    }
+}
+
+# Final capture
+expect -timeout 3 {
+    -re ".+" { emit "\\\[FINAL\\\] $expect_out(buffer)\n" }
     timeout {}
 }
 
 emit "\n========================================\n"
-emit "Registration attempted for: $demo_user\n"
-emit "Save these credentials if you plan to log in.\n"
+if { $registered } {
+    emit "SUCCESS: $demo_user registered on SDF!\n"
+} else {
+    emit "Attempted registration for: $demo_user\n"
+}
+emit "Password: $demo_pass\n"
 emit "========================================\n"
-exit 0
+exit [expr {!$registered}]

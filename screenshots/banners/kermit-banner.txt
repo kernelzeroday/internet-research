@@ -1,0 +1,42 @@
+========================================
+ BANNER CAPTURE
+ Host:      kermit.quux.org
+ Port:      1649
+ Type:      telnet
+ Timestamp: 2026-05-18 18:01:41
+ ========================================
+--- BANNER ---
+Trying 51.79.38.140...
+Connected to kermit.quux.org.
+Escape character is '^]'.
+?OpenSSL libraries do not match required version:
+  . C-Kermit built with OpenSSL 3.4.1 11 Feb 2025
+  . Version found  OpenSSL 3.5.6 7 Apr 2026
+  OpenSSL versions 1.0.0 or newer must be the same
+  major and minor version number, and Kermit may not
+  be used with a version of OpenSSL older than the one
+  supplied at compile time.
+  Set LD_LIBRARY_PATH for OpenSSL 3.4.1 11 Feb 2025.
+  Or rebuild C-Kermit from source on this computer to make versions agree.
+  C-Kermit makefile target: linux+ssl
+  Or if that is what you did then try to find out why
+  the program loader (image activator) is choosing a
+  different OpenSSL library than the one specified in the build.
+
+  All SSL/TLS features disabled.
+
+
+ >>> Welcome to the Internet Kermit Service at kermit.quux.org <<<
+
+To log in, use 'anonymous' as the username, and any non-empty password
+
+Internet Kermit Service ready at Mon May 18 20:01:42 2026
+C-Kermit 10.0.416 Beta.12, 2025/03/22
+kermit
+
+Username:
+--- END BANNER ---
+
+[Detected: login-prompt]
+ 
+========================================

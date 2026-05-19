@@ -37,23 +37,25 @@ fi
 if [ "$DURATION" -lt 5 ]; then DURATION=5; fi
 if [ "$DURATION" -gt 60 ]; then DURATION=60; fi
 
-# Look up the system command
-SYSTEM_CMD=""
-CURRENT_NAME=""
-while IFS= read -r line; do
-    # Match add_system with the given name
-    if echo "$line" | grep -q "^add_system"; then
-        CURRENT_NAME=$(echo "$line" | awk -F'"' '{print $2}')
-    fi
-    if [ "$CURRENT_NAME" = "$SYSTEM_NAME" ]; then
-        # Accumulate until we hit the closing quote of the command field
-        if echo "$line" | grep -q '"[^"]*"[^"]*$'; then
-            # Last line of this block - extract command
-            SYSTEM_CMD=$(echo "$line" | sed 's/.*"\(.*\)"[[:space:]]*$/\1/' | sed 's/\\$//')
-            break
-        fi
-    fi
-done < <(grep -A4 "^add_system \"$SYSTEM_NAME\"" "$CONNECT_SH")
+# Look up the system command from connect.sh
+# Uses perl to handle multi-line add_system blocks (same as service-scan.sh)
+lookup_command() {
+    local name="$1"
+    perl -e '
+    local $/;
+    my $text = <>;
+    $text =~ s/\\\n//g;
+    while ($text =~ /add_system\s+"([^"]+)"\s+"([^"]+)"\s+"([^"]+)"\s+"([^"]+)"\s+"([^"]+)"/g) {
+        my ($n, $c, $d, $h, $cmd) = ($1, $2, $3, $4, $5);
+        if ($n eq "'"$name"'") {
+            print $cmd;
+            last;
+        }
+    }
+    ' "$CONNECT_SH"
+}
+
+SYSTEM_CMD=$(lookup_command "$SYSTEM_NAME")
 
 if [ -z "$SYSTEM_CMD" ]; then
     echo "Error: system '$SYSTEM_NAME' not found in connect.sh"

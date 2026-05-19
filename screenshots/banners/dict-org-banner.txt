@@ -1,0 +1,8 @@
+========================================
+ BANNER CAPTURE
+ Host:      dict.dict.org
+ Port:      2628
+ Type:      telnet
+ Timestamp: 2026-05-18 18:01:43
+ ========================================
+TIMEOUT: No response from dict.dict.org:2628

@@ -1,0 +1,15 @@
+========================================
+ BANNER CAPTURE
+ Host:      sdf.org
+ Port:      22
+ Type:      ssh
+ Timestamp: 2026-05-18 18:01:12
+ ========================================
+--- BANNER ---
+Warning: Permanently added 'sdf.org' (ED25519) to the list of known hosts.
+kod@sdf.org's password:
+--- END BANNER ---
+
+[Detected: password-prompt]
+ 
+========================================

@@ -1,0 +1,727 @@
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:07:03
+========================================
+Username: test-sdf-51002
+Host:     sdf.org:22
+========================================
+
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:08:30
+========================================
+Username: test-sdf-67310
+Host:     sdf.org:22
+========================================
+
+\[SERVER\] Warning: Permanently added 'sdf.org' (ED25519) to the list of known hosts.
+newuser@sdf.org's password:
+\[UNEXPECTED: Already at password prompt\]
+TIMEOUT: No password prompt
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:09:32
+========================================
+Username: test-sdf-21415
+Host:     sdf.org:22
+========================================
+
+\[SERVER\] Warning: Permanently added 'sdf.org' (ED25519) to the list of known hosts.
+
+You will now be connected to NEWUSER mkacct server.
+Please login
+\[SERVER\]  as 'new' password
+TIMEOUT: No password confirmation prompt
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:11:19
+========================================
+Username: test-sdf-26433
+Password: demo810806331
+Host:     sdf.org:22
+========================================
+
+\[MKACCT\] password prompt received
+TIMEOUT: No mkacct password prompt
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:12:16
+========================================
+Username: test-sdf-58079
+Password: demo558519217
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting to SDF...
+TIMEOUT: No mkacct login prompt appeared
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:12:54
+========================================
+Username: test-sdf-77188
+Password: demo201541241
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting to SDF...
+\[MKACCT\] Pressing RETURN to connect...
+\[MKACCT\] login prompt received
+TIMEOUT: No mkacct password prompt
+Buffer: ] 
+THIS MAY TAKE A MOMENT .. Trying 10.0.0.26...
+Connected to mx1.
+Escape character is 'off'.
+
+NetBSD/amd64 (mx) (pts/0)
+
+login: 
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:13:32
+========================================
+Username: test-sdf-63519
+Password: demo567729327
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting to SDF...
+\[MKACCT\] Pressing RETURN to connect...
+\[MKACCT\] login prompt received
+\[MKACCT\] BACKSPACE prompt - sending backspace
+TIMEOUT: No mkacct password prompt
+Buffer: new
+[H[JWelcome to the SDF Public Access UNIX System - Est. 1987
+
+Please press your BACKSPACE key
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:14:31
+========================================
+Username: test-sdf-52265
+Password: demo793105445
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting to SDF...
+\[MKACCT\] Pressing RETURN to connect...
+\[MKACCT\] login: sending 'new'
+\[REG\] new
+[H[JWelcome
+\[REGISTRATION SUCCESSFUL\]
+\[FINAL\]  to the SDF Public Access UNIX System - Est. 1987
+
+Please press your BACKSPACE key: 
+
+========================================
+Registration SUCCESSFUL for: test-sdf-52265
+Password: demo793105445
+========================================
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:15:04
+========================================
+Username: test-sdf-83600
+Password: demo519178485
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting to SDF...
+\[MKACCT\] Pressing RETURN to connect...
+\[MKACCT\] login: sending 'new'
+TIMEOUT
+Buffer: ] 
+THIS MAY TAKE A MOMENT .. Trying 10.0.0.26...
+Connected to mx1.
+Escape character is 'off'.
+
+NetBSD/amd64 (mx) (pts/0)
+
+login: 
+\[FINAL\] new
+[H[JWelcome to the SDF Public Access UNIX System - Est. 1987
+
+Please press your BACKSPACE key: 
+
+========================================
+Registration attempted for: test-sdf-83600
+Password: demo519178485
+========================================
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:16:48
+========================================
+Username: test-sdf-23921
+Password: demo832185035
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting...
+\[MKACCT\] RETURN -> connect
+\[MKACCT\] login: 'new'
+TIMEOUT: No password prompt after intro
+Buffer: ] 
+THIS MAY TAKE A MOMENT .. Trying 10.0.0.26...
+Connected to mx1.
+Escape character is 'off'.
+
+NetBSD/amd64 (mx) (pts/0)
+
+login: 
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:18:53
+========================================
+Username: test-sdf-86562
+Password: demo717231948
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting...
+\[MKACCT\] RETURN -> connect
+\[MKACCT\] login: 'new'
+\[MKACCT\] waiting for backspace prompt...
+\[MKACCT\] sending BACKSPACE
+\[MKACCT\] pressing RETURN (intro)
+TIMEOUT: waiting for prompts
+PARTIAL:  key: 
+[H[J
+PLEASE READ THIS CAREFULLY:
+
+You are about to create a UNIX shell account.  This account may be unlike
+anything you've used before.  We urge you to carefully read all the text
+displayed on your terminal, as it will aide you in your learning.
+We also encourage you to try all the commands available with your new
+account.  There are many types of games, applications and utilities
+you will be able to instantly run in just a few moments.  If you are
+looking for a particular command or version of a command that we do not
+have, there are ways to request that it be installed.  We also offer DIALUP
+and DSL in the USA and Canada which you will be able to learn about
+shortly.  Be patient, read what is displayed - Explore and Enjoy!
+
+[RETURN]
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:20:34
+========================================
+Username: test-sdf-88294
+Password: demo127596384
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting...
+\[MKACCT\] RETURN -> connect
+\[MKACCT\] login: 'new'
+\[MKACCT\] waiting for backspace prompt...
+\[MKACCT\] sending BACKSPACE
+\[MKACCT\] pressing RETURN (intro)
+\[REG\] entering registration menu
+\[REG\] Waiting for registration menu...
+TIMEOUT: Registration flow
+Buffer: 
+
+First, you need to choose a LOGIN.  A LOGIN allows you to LOG IN
+to the system.  Your LOGIN can be 1 to 16 characters in length and
+can be composed of alpha-numeric characters (middle period is OK).
+
+What would you like to use for your login
+
+========================================
+Attempted registration for: test-sdf-88294
+Password: demo127596384
+========================================
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:21:20
+========================================
+Username: test-sdf-84930
+Password: demo914079370
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting...
+\[MKACCT\] RETURN -> connect
+\[MKACCT\] login: 'new'
+\[MKACCT\] waiting for backspace prompt...
+\[MKACCT\] sending BACKSPACE
+\[MKACCT\] pressing RETURN (intro)
+\[REG\] sending username: test-sdf-84930
+\[REG\] Waiting for registration menu...
+\[REG\] default
+TIMEOUT: Registration flow
+Buffer: ? test-sdf-84930
+
+Please only use alpha-numberic characters for your login.
+
+Type 'mkacct' to create your own UNIX shell
+
+========================================
+Attempted registration for: test-sdf-84930
+Password: demo914079370
+========================================
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:22:21
+========================================
+Username: test97849
+Password: demo438823481
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting...
+\[MKACCT\] RETURN -> connect
+\[MKACCT\] login: 'new'
+\[MKACCT\] waiting for backspace prompt...
+\[MKACCT\] sending BACKSPACE
+\[MKACCT\] pressing RETURN (intro)
+\[REG\] sending username: test97849
+\[REG\] Waiting for registration menu...
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] default
+\[REG\] RETURN
+\[REG\] username: test97849
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] default
+\[REG\] RETURN
+\[REG\] username: test97849
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] default
+\[REG\] RETURN
+\[REG\] username: test97849
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] default
+\[REG\] RETURN
+\[REG\] username: test97849
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] default
+\[REG\] RETURN
+\[REG\] username: test97849
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] default
+\[REG\] RETURN
+\[REG\] username: test97849
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] default
+\[REG\] RETURN
+\[REG\] username: test97849
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] default
+\[REG\] RETURN
+\[REG\] username: test97849
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] default
+\[REG\] RETURN
+\[REG\] username: test97849
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] default
+\[REG\] RETURN
+\[REG\] username: test97849
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] default
+\[REG\] RETURN
+\[REG\] username: test97849
+\[REG\] FEP prompt, sending 'mkacct'
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:24:14
+========================================
+Username: sdf45343
+Password: demo238531346
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting...
+\[MKACCT\] RETURN -> connect
+\[MKACCT\] login: 'new'
+\[MKACCT\] waiting for backspace prompt...
+\[MKACCT\] sending BACKSPACE
+\[MKACCT\] pressing RETURN (intro)
+\[REG\] sending username: sdf45343
+\[REG\] Waiting for registration menu...
+\[REG\] ? sdf45343
+
+I'm sorry, but sdf45343 already exist
+\[REGISTRATION FAILED\]
+
+========================================
+Attempted registration for: sdf45343
+Password: demo238531346
+========================================
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:24:35
+========================================
+Username: u3468700
+Password: demo245538387
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting...
+\[MKACCT\] RETURN -> connect
+\[MKACCT\] login: 'new'
+\[MKACCT\] waiting for backspace prompt...
+\[MKACCT\] sending BACKSPACE
+\[MKACCT\] pressing RETURN (intro)
+\[REG\] sending username: u3468700
+\[REG\] Waiting for registration menu...
+\[REG\] email
+\[REG\] email
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+\[REG\] default
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:25:12
+========================================
+Username: u5102992
+Password: demo199092072
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting...
+\[MKACCT\] RETURN -> connect
+\[MKACCT\] login: 'new'
+\[MKACCT\] waiting for backspace prompt...
+\[MKACCT\] sending BACKSPACE
+\[MKACCT\] pressing RETURN (intro)
+\[REG\] sending username: u5102992
+\[REG\] Waiting for registration menu...
+\[REG\] default (Enter)
+\[REG\] agreeing to policy
+\[REG\] agreeing to policy
+\[REG\] agreeing to policy
+\[REG\] RETURN
+TIMEOUT: Registration flow
+Buffer:  we trust you to
+follow it.  Thank you and be responsible!
+
+[RETURN]
+
+========================================
+Attempted registration for: u5102992
+Password: demo199092072
+========================================
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:26:26
+========================================
+Username: u5068522
+Password: demo766394049
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting...
+\[MKACCT\] RETURN -> connect
+\[MKACCT\] login: 'new'
+\[MKACCT\] waiting for backspace prompt...
+\[MKACCT\] sending BACKSPACE
+\[MKACCT\] pressing RETURN (intro)
+\[REG\] sending username: u5068522
+\[REG\] Waiting for registration menu...
+\[REG\] default (Enter)
+\[REG\] agreeing to policy
+\[REG\] policy already agreed, skipping
+\[REG\] RETURN
+\[REG\] name (blank)
+\[REG\] birth year: 1990
+\[REG\] zip: 00000
+TIMEOUT: Registration flow
+Buffer: :      1990
+Postal Zip
+
+========================================
+Attempted registration for: u5068522
+Password: demo766394049
+========================================
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:27:59
+========================================
+Username: u4962008
+Password: demo848506916
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting...
+\[MKACCT\] RETURN -> connect
+\[MKACCT\] login: 'new'
+\[MKACCT\] waiting for backspace prompt...
+\[MKACCT\] sending BACKSPACE
+\[MKACCT\] pressing RETURN (intro)
+\[REG\] sending username: u4962008
+\[REG\] Waiting for registration menu...
+\[REG\] username: u4962008
+\[REG\] default (Enter)
+\[REG\] agreeing to policy
+\[REG\] policy already agreed, skipping
+\[REG\] policy already agreed, skipping
+\[REG\] RETURN
+\[REG\] name (blank)
+\[REG\] birth year: 1990
+\[REG\] zip: 00000
+\[REG\] not student (n)
+TIMEOUT: Registration flow
+Buffer:  Code:    00000
+
+Are you a K-12, University faculty member or student? (y/n)
+
+========================================
+Attempted registration for: u4962008
+Password: demo848506916
+========================================
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:30:07
+========================================
+Username: u2441039
+Password: demo155757641
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting...
+\[MKACCT\] RETURN -> connect
+\[MKACCT\] login: 'new'
+\[MKACCT\] waiting for backspace prompt...
+\[MKACCT\] sending BACKSPACE
+\[MKACCT\] pressing RETURN (intro)
+\[MKACCT\] mkacct login complete, entering registration...
+\[REG\] Waiting for registration menu...
+\[REG\] username: u2441039
+\[REG\] default (Enter)
+\[REG\] agreeing to policy
+\[REG\] policy already agreed, skipping
+\[REG\] RETURN
+\[REG\] name (blank)
+\[REG\] birth year: 1990
+\[REG\] zip: 00000
+\[REG\] not student (n)
+\[REG\] not ham (n)
+TIMEOUT: Registration flow
+Buffer:  NO
+Are you an Amateur Radio Operator? (y/n)
+
+========================================
+Attempted registration for: u2441039
+Password: demo155757641
+========================================
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:32:00
+========================================
+Username: u4945122
+Password: demo367604761
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting...
+\[MKACCT\] RETURN -> connect
+\[MKACCT\] login: 'new'
+\[MKACCT\] waiting for backspace prompt...
+\[MKACCT\] sending BACKSPACE
+\[MKACCT\] pressing RETURN (intro)
+\[MKACCT\] mkacct login complete, entering registration...
+\[REG\] Waiting for registration menu...
+\[REG\] username: u4945122
+\[REG\] default (Enter)
+\[REG\] agreeing to policy
+\[REG\] policy already agreed, skipping
+\[REG\] RETURN
+\[REG\] name (blank)
+\[REG\] birth year: 1990
+\[REG\] zip: 00000
+\[REG\] not student (n)
+\[REG\] not ham (n)
+\[REG\] not DJ (n)
+\[REG\] not DJ (n)
+TIMEOUT: Registration flow
+Buffer:  NO
+% Check out https://aNONradio.net where SDFers stream their own DJ music.
+Do you play Minecraft, MUDs, MOOs or MMORPG? (y/n)
+
+========================================
+Attempted registration for: u4945122
+Password: demo367604761
+========================================
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:35:00
+========================================
+Username: u7207810
+Password: demo766287596
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting...
+\[MKACCT\] RETURN -> connect
+\[MKACCT\] login: 'new'
+\[MKACCT\] waiting for backspace prompt...
+\[MKACCT\] sending BACKSPACE
+\[MKACCT\] pressing RETURN (intro)
+\[MKACCT\] mkacct login complete, entering registration...
+\[REG\] Waiting for registration menu...
+\[REG\] username: u7207810
+\[REG\] default (Enter)
+\[REG\] agreeing to policy
+\[REG\] policy already agreed, skipping
+\[REG\] RETURN
+\[REG\] name (blank)
+\[REG\] birth year: 1990
+\[REG\] zip: 00000
+\[REG\] not student (n)
+\[REG\] not ham (n)
+\[REG\] not DJ (n)
+\[REG\] not DJ (n)
+\[REG\] referral: internet
+\[REG\] default (Enter)
+\[REG\] y/n -> n
+\[REG\] default (Enter)
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] FEP prompt, sending 'mkacct'
+\[REG\] username: u7207810
+\[REG\] default (Enter)
+\[REG\] policy already agreed, skipping
+\[REG\] policy already agreed, skipping
+TIMEOUT: Registration flow
+Buffer: : 
+
+^G?Please answer "yes" or "no"
+
+I agree with your policy and accept it (yes/no)
+
+========================================
+Attempted registration for: u7207810
+Password: demo766287596
+========================================
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:37:12
+========================================
+Username: u7865930
+Password: demo770102619
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting...
+\[MKACCT\] RETURN -> connect
+\[MKACCT\] login: 'new'
+\[MKACCT\] waiting for backspace prompt...
+\[MKACCT\] sending BACKSPACE
+\[MKACCT\] pressing RETURN (intro)
+\[MKACCT\] mkacct login complete, entering registration...
+\[REG\] Waiting for registration menu...
+\[REG\] username: u7865930
+\[REG\] default (Enter)
+\[REG\] agreeing to policy
+\[REG\] policy already agreed, skipping
+\[REG\] RETURN
+\[REG\] name (blank)
+\[REG\] birth year: 1990
+\[REG\] zip: 00000
+\[REG\] not student (n)
+\[REG\] not ham (n)
+\[REG\] not DJ (n)
+\[REG\] not DJ (n)
+\[REG\] referral: internet
+\[REG\] default (Enter)
+\[REG\] confirming account creation (y)
+\[REG\] password
+\[REG\] password
+\[REG\] password
+\[REG\] default (Enter)
+\[REG\] username: u7865930
+\[REG\] password
+TIMEOUT: Registration flow
+Buffer:  to .. 
+using faeroes.sdf.org
+Attempting a secure connection to faeroes.sdf.org ..
+(If this doesn't work, connect back using 'tty.sdf.org')
+u7865930
+u7865930@faeroes's password:
+
+========================================
+Attempted registration for: u7865930
+Password: demo770102619
+========================================
+========================================
+SDF REGISTRATION DEMO
+Timestamp: 2026-05-18 18:40:03
+========================================
+Username: u4225287
+Password: demo141133168
+Host:     sdf.org:22
+========================================
+
+\[SSH\] Connecting...
+\[MKACCT\] RETURN -> connect
+\[MKACCT\] login: 'new'
+\[MKACCT\] waiting for backspace prompt...
+\[MKACCT\] sending BACKSPACE
+\[MKACCT\] pressing RETURN (intro)
+\[MKACCT\] mkacct login complete, entering registration...
+\[REG\] Waiting for registration menu...
+\[REG\] username: u4225287
+\[REG\] default (Enter)
+\[REG\] agreeing to policy
+\[REG\] policy already agreed, skipping
+\[REG\] RETURN
+\[REG\] name (blank)
+\[REG\] birth year: 1990
+\[REG\] zip: 00000
+\[REG\] not student (n)
+\[REG\] not ham (n)
+\[REG\] not DJ (n)
+\[REG\] not DJ (n)
+\[REG\] referral: internet
+\[REG\] default (Enter)
+\[REG\] confirming account creation (y)
+\[REG\] password
+\[REG\] password
+\[REG\]  
+Warning: Password truncated to 8 characters by CRYPT algorithm.
+Adding password for user u4225287
+
+Creating login, please wait [NegotiatingSearching for a unique numeric userid.
+] Established
+\[REGISTRATION SUCCESSFUL\]
+
+========================================
+SUCCESS: u4225287 registered on SDF!
+Password: demo141133168
+========================================

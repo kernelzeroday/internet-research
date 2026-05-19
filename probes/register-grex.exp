@@ -65,13 +65,15 @@ spawn -noecho ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
 
 expect {
     -re "(?i)username|login|name.*:" {
-        emit "[SERVER] $expect_out(buffer)\n"
+        emit "\\\[SERVER\\\] $expect_out(buffer)\n"
         sleep 0.5
         send "$demo_user\r"
     }
     -re "(?i)password:" {
-        emit "[SERVER] $expect_out(buffer)\n"
-        emit "[UNEXPECTED: Already at password prompt]\n"
+        emit "\\\[SERVER\\\] $expect_out(buffer)\n"
+        # Grex accepts blank password for newuser account
+        sleep 0.3
+        send "\r"
     }
     timeout {
         emit "TIMEOUT: Grex not responding\n"
@@ -86,7 +88,7 @@ expect {
 # Password prompt
 expect {
     -re "(?i)password|passwd" {
-        emit "[SERVER] $expect_out(buffer)\n"
+        emit "\\\[SERVER\\\] $expect_out(buffer)\n"
         sleep 0.3
         send "$demo_pass\r"
     }
@@ -99,7 +101,7 @@ expect {
 # Password confirmation
 expect {
     -re "(?i)again|confirm|re-enter|verify" {
-        emit "[SERVER] $expect_out(buffer)\n"
+        emit "\\\[SERVER\\\] $expect_out(buffer)\n"
         sleep 0.3
         send "$demo_pass\r"
     }
@@ -111,7 +113,7 @@ expect {
 # Email / contact info
 expect {
     -re "(?i)mail|email|contact" {
-        emit "[SERVER] $expect_out(buffer)\n"
+        emit "\\\[SERVER\\\] $expect_out(buffer)\n"
         sleep 0.3
         if { $demo_email == "skip" || $demo_email == "" } {
             send "\r"
@@ -127,29 +129,29 @@ expect {
 # Any remaining prompts (terms, shell choice, etc.)
 expect {
     -re "(?i)agree|accept|yes/no|\[y\]|\[n\]|continue|shell|choice|select|option|default" {
-        emit "[SERVER] $expect_out(buffer)\n"
+        emit "\\\[SERVER\\\] $expect_out(buffer)\n"
         sleep 0.3
         send "\r"
         exp_continue
     }
     -re "(?i)success|created|welcome|account|thank|validated" {
-        emit "[SERVER] $expect_out(buffer)\n"
-        emit "\n[REGISTRATION SUCCESSFUL]\n"
+        emit "\\\[SERVER\\\] $expect_out(buffer)\n"
+        emit "\\\[REGISTRATION SUCCESSFUL\\\]\n"
     }
     -re "(?i)error|fail|invalid|taken|exist|unavailable" {
-        emit "[SERVER] $expect_out(buffer)\n"
-        emit "\n[REGISTRATION FAILED]\n"
+        emit "\\\[SERVER\\\] $expect_out(buffer)\n"
+        emit "\\\[REGISTRATION FAILED\\\]\n"
     }
     timeout {
         emit "TIMEOUT: Registration flow unfinished\n"
-        emit "[PARTIAL] $expect_out(buffer)\n"
+        emit "\\\[PARTIAL\\\] $expect_out(buffer)\n"
     }
 }
 
 # Final capture
 expect {
     -re ".+" {
-        emit "[FINAL] $expect_out(buffer)\n"
+        emit "\\\[FINAL\\\] $expect_out(buffer)\n"
     }
     timeout {}
 }

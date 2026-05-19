@@ -1,0 +1,8 @@
+========================================
+ BANNER CAPTURE
+ Host:      dcastle.org
+ Port:      23
+ Type:      telnet
+ Timestamp: 2026-05-18 18:01:51
+ ========================================
+TIMEOUT: No response from dcastle.org:23

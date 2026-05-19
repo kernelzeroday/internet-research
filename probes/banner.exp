@@ -29,10 +29,15 @@ if { $argc < 3 } {
 set host    [lindex $argv 0]
 set port    [lindex $argv 1]
 set type    [lindex $argv 2]
-set outfile [lindex $argv 3]
 set finger_user "0"
-if { $argc >= 4 } { set finger_user [lindex $argv 3] }
-set outfile [lindex $argv 4]
+set outfile ""
+
+if { $type == "finger" } {
+    if { $argc >= 4 } { set finger_user [lindex $argv 3] }
+    if { $argc >= 5 } { set outfile [lindex $argv 4] }
+} else {
+    if { $argc >= 4 } { set outfile [lindex $argv 3] }
+}
 
 # Timestamp
 set timestamp [clock format [clock seconds] -format "%Y-%m-%d %H:%M:%S"]

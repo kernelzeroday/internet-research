@@ -2,3 +2,7 @@
 *.swp
 *.swo
 *~
+
+# Screenshots/captures (keep .gitkeep)
+screenshots/*
+!screenshots/.gitkeep

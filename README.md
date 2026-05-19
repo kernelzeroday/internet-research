@@ -11,7 +11,27 @@ other interesting interactive services found on the public internet via Shodan.
 ./connect.sh telehack     # quick-connect to Telehack
 ./connect.sh random       # surprise me
 ./connect.sh list         # list all available systems
+./connect.sh probe        # scan all systems for up/down status
+./connect.sh banner sdf   # capture welcome banner from a system
+./connect.sh demo sdf     # record an asciinema demo
+./connect.sh register sdf # auto-register a demo account on SDF (expect)
 ```
+
+## Probes & Automation
+
+This project includes automation tools in the `probes/` directory:
+
+| Tool | Description |
+|------|-------------|
+| `probes/banner.exp` | Expect script to connect and capture MOTD/welcome banners |
+| `probes/service-scan.sh` | Check which systems are online (TCP port probe) |
+| `probes/capture-demo.sh` | Record asciinema terminal sessions as demos |
+| `probes/register-sdf.exp` | Auto-register a demo account on SDF (expect) |
+| `probes/register-grex.exp` | Auto-register on Grex (expect) |
+
+All tools are accessible through `./connect.sh` subcommands.
+
+Output goes to `screenshots/` (gitignored).
 
 ## Legend
 

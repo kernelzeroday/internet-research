@@ -1,0 +1,175 @@
+#!/usr/bin/env expect -f
+# banner.exp - Connect to a system and capture the welcome banner/MOTD
+#
+# Usage:
+#   ./probes/banner.exp <host> <port> <type> [outfile]
+#
+#   <host>   - Hostname or IP
+#   <port>   - TCP port
+#   <type>   - "ssh", "telnet", "raw", or "finger"
+#   [outfile]- Optional file path to save banner (also prints to stdout)
+#
+# Environment:
+#   BANNER_TIMEOUT  - Seconds to wait for output (default: 8)
+#
+# Examples:
+#   ./probes/banner.exp sdf.org 22 ssh
+#   ./probes/banner.exp telehack.com 23 telnet
+#   ./probes/banner.exp rdnetbbs.com 17 raw
+#   ./probes/banner.exp shell.panix.com 79 finger "0"
+
+set timeout 8
+if { [info exists env(BANNER_TIMEOUT)] } { set timeout $env(BANNER_TIMEOUT) }
+
+if { $argc < 3 } {
+    puts "Usage: $argv0 <host> <port> <type> \[finger-args\]"
+    exit 1
+}
+
+set host    [lindex $argv 0]
+set port    [lindex $argv 1]
+set type    [lindex $argv 2]
+set outfile [lindex $argv 3]
+set finger_user "0"
+if { $argc >= 4 } { set finger_user [lindex $argv 3] }
+set outfile [lindex $argv 4]
+
+# Timestamp
+set timestamp [clock format [clock seconds] -format "%Y-%m-%d %H:%M:%S"]
+set header "========================================\n\
+BANNER CAPTURE\n\
+Host:      $host\n\
+Port:      $port\n\
+Type:      $type\n\
+Timestamp: $timestamp\n\
+========================================\n"
+
+proc emit {text} {
+    global outfile
+    puts -nonewline $text
+    if { $outfile != "" } {
+        if { [catch {set fh [open $outfile a]}] } {
+            puts "Warning: could not write to $outfile"
+            return
+        }
+        puts -nonewline $fh $text
+        close $fh
+    }
+}
+
+emit $header
+
+# ── Connection ──────────────────────────────────────────────────────────────
+set result ""
+
+switch -- $type {
+    "ssh" {
+        spawn -noecho ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+            -o ConnectTimeout=$timeout -p $port $host
+        # Skip past SSH key prompt if any
+        expect {
+            -re "(?i)password:|Password:" {
+                set result "password-prompt"
+            }
+            -re "(?i)username:|login:" {
+                set result "login-prompt"
+            }
+            -re "(?i)new user|register|account" {
+                set result "registration-flow"
+            }
+            timeout {
+                emit "TIMEOUT: No response from $host:$port\n"
+                exit 1
+            }
+            eof {
+                emit "EOF: Connection closed\n"
+                exit 0
+            }
+        }
+    }
+    "telnet" {
+        spawn -noecho telnet $host $port
+        expect {
+            -re "login:|Username:|Login:|assword:|Password:" {
+                set result "login-prompt"
+            }
+            -re "(?i)new user|register|account|press return|hit enter" {
+                set result "registration-flow"
+            }
+            timeout {
+                emit "TIMEOUT: No response from $host:$port\n"
+                exit 1
+            }
+            eof {
+                emit "EOF: Connection closed\n"
+                exit 0
+            }
+        }
+    }
+    "raw" {
+        spawn -noecho sh -c "exec 3<>/dev/tcp/$host/$port; cat <&3"
+        expect {
+            -re ".+" {
+                set result "data"
+            }
+            timeout {
+                emit "TIMEOUT: No data from $host:$port\n"
+                exit 1
+            }
+            eof {
+                set result "data-eof"
+            }
+        }
+    }
+    "finger" {
+        spawn -noecho sh -c "finger -l $finger_user@$host"
+        expect {
+            -re ".+" {
+                set result "data"
+            }
+            timeout {
+                emit "TIMEOUT: finger $host\n"
+                exit 1
+            }
+            eof {
+                set result "data-eof"
+            }
+        }
+    }
+    default {
+        puts "Unknown type: $type (use ssh, telnet, raw, finger)"
+        exit 1
+    }
+}
+
+# Capture everything up to the first prompt/stopping point
+set banner $expect_out(buffer)
+# Filter out telnet negotiation garbage
+regsub -all {\x1b\[[0-9;]*[a-zA-Z]} $banner "" banner
+regsub -all {\x1b[=\<\>]} $banner "" banner
+regsub -all {\x1b\)[0-9A-Z]} $banner "" banner
+# Trim leading whitespace after negotiation
+regsub {^\s*(\r?\n)+} $banner "" banner
+
+emit "--- BANNER ---\n"
+emit "$banner"
+emit "\n--- END BANNER ---\n"
+
+if { $result != "" } {
+    emit "\n\[Detected: $result\]\n"
+}
+
+# Try to grab a bit more for systems with long MOTDs
+if { $result == "login-prompt" || $result == "password-prompt" } {
+    expect {
+        -re ".+" {
+            set more $expect_out(buffer)
+            regsub -all {\x1b\[[0-9;]*[a-zA-Z]} $more "" more
+            emit "$more"
+        }
+        timeout {}
+    }
+}
+
+emit "\n========================================\n"
+exit 0

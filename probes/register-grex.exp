@@ -1,0 +1,160 @@
+#!/usr/bin/env expect -f
+# register-grex.exp - Automate Grex (grex.org) newuser registration
+#
+# Usage: ./probes/register-grex.exp [outfile]
+#
+# Environment variables (all optional):
+#   DEMO_USER    - Desired username (default: test-grx-XXXX random)
+#   DEMO_PASS    - Password (default: generated)
+#   DEMO_EMAIL   - Email (default: none/blank)
+#   BANNER_TIMEOUT - Seconds to wait per prompt (default: 15)
+#
+# WARNING: This creates a REAL account on Grex. Be respectful.
+# Grex: non-profit, Ann Arbor. Free accounts since 1991.
+
+set timeout 15
+if { [info exists env(BANNER_TIMEOUT)] } { set timeout $env(BANNER_TIMEOUT) }
+
+set outfile [lindex $argv 0]
+set demo_host "grex.org"
+set demo_port 22
+
+# Generate random username if not set
+if { [info exists env(DEMO_USER)] } {
+    set demo_user $env(DEMO_USER)
+} else {
+    set rand [expr {int(rand() * 90000) + 10000}]
+    set demo_user "test-grx-$rand"
+}
+
+if { [info exists env(DEMO_PASS)] } {
+    set demo_pass $env(DEMO_PASS)
+} else {
+    set rand2 [expr {int(rand() * 900000000) + 100000000}]
+    set demo_pass "demo$rand2"
+}
+
+if { [info exists env(DEMO_EMAIL)] } {
+    set demo_email $env(DEMO_EMAIL)
+} else {
+    set demo_email ""
+}
+
+set timestamp [clock format [clock seconds] -format "%Y-%m-%d %H:%M:%S"]
+
+proc emit {text} {
+    global outfile
+    puts -nonewline $text
+    if { $outfile != "" } {
+        if { [catch {set fh [open $outfile a]}] } { return }
+        puts -nonewline $fh $text
+        close $fh
+    }
+}
+
+emit "========================================\n"
+emit "GREX REGISTRATION DEMO\n"
+emit "Timestamp: $timestamp\n"
+emit "========================================\n"
+emit "Username: $demo_user\n"
+emit "Host:     $demo_host:$demo_port\n"
+emit "========================================\n\n"
+
+spawn -noecho ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+    -o ConnectTimeout=10 -l newuser $demo_host
+
+expect {
+    -re "(?i)username|login|name.*:" {
+        emit "[SERVER] $expect_out(buffer)\n"
+        sleep 0.5
+        send "$demo_user\r"
+    }
+    -re "(?i)password:" {
+        emit "[SERVER] $expect_out(buffer)\n"
+        emit "[UNEXPECTED: Already at password prompt]\n"
+    }
+    timeout {
+        emit "TIMEOUT: Grex not responding\n"
+        exit 1
+    }
+    eof {
+        emit "EOF: Connection closed by server\n"
+        exit 1
+    }
+}
+
+# Password prompt
+expect {
+    -re "(?i)password|passwd" {
+        emit "[SERVER] $expect_out(buffer)\n"
+        sleep 0.3
+        send "$demo_pass\r"
+    }
+    timeout {
+        emit "TIMEOUT: No password prompt\n"
+        exit 1
+    }
+}
+
+# Password confirmation
+expect {
+    -re "(?i)again|confirm|re-enter|verify" {
+        emit "[SERVER] $expect_out(buffer)\n"
+        sleep 0.3
+        send "$demo_pass\r"
+    }
+    timeout {
+        emit "TIMEOUT: No password confirmation (may be OK)\n"
+    }
+}
+
+# Email / contact info
+expect {
+    -re "(?i)mail|email|contact" {
+        emit "[SERVER] $expect_out(buffer)\n"
+        sleep 0.3
+        if { $demo_email == "skip" || $demo_email == "" } {
+            send "\r"
+        } else {
+            send "$demo_email\r"
+        }
+    }
+    timeout {
+        emit "TIMEOUT or no email prompt (OK)\n"
+    }
+}
+
+# Any remaining prompts (terms, shell choice, etc.)
+expect {
+    -re "(?i)agree|accept|yes/no|\[y\]|\[n\]|continue|shell|choice|select|option|default" {
+        emit "[SERVER] $expect_out(buffer)\n"
+        sleep 0.3
+        send "\r"
+        exp_continue
+    }
+    -re "(?i)success|created|welcome|account|thank|validated" {
+        emit "[SERVER] $expect_out(buffer)\n"
+        emit "\n[REGISTRATION SUCCESSFUL]\n"
+    }
+    -re "(?i)error|fail|invalid|taken|exist|unavailable" {
+        emit "[SERVER] $expect_out(buffer)\n"
+        emit "\n[REGISTRATION FAILED]\n"
+    }
+    timeout {
+        emit "TIMEOUT: Registration flow unfinished\n"
+        emit "[PARTIAL] $expect_out(buffer)\n"
+    }
+}
+
+# Final capture
+expect {
+    -re ".+" {
+        emit "[FINAL] $expect_out(buffer)\n"
+    }
+    timeout {}
+}
+
+emit "\n========================================\n"
+emit "Registration attempted for: $demo_user\n"
+emit "========================================\n"
+exit 0

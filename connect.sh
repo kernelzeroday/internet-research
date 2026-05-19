@@ -633,9 +633,14 @@ list_systems() {
     printf "    ${GREEN}%-20s${NC} %s\n" "$name" "$cmd"
   done
   echo ""
-  echo -e "${GREEN}Usage:${NC} ./connect.sh           (interactive menu)"
-  echo "       ./connect.sh <name>   (connect directly)"
-  echo "       ./connect.sh random   (surprise me)"
+  echo -e "${GREEN}Usage:${NC} ./connect.sh             (interactive menu)"
+  echo "       ./connect.sh <name>     (connect directly)"
+  echo "       ./connect.sh random     (surprise me)"
+  echo "       ./connect.sh probe      (scan all services for up/down)"
+  echo "       ./connect.sh probe sdf  (scan specific system)"
+  echo "       ./connect.sh banner sdf (capture welcome banner)"
+  echo "       ./connect.sh register sdf (auto-register demo account)"
+  echo "       ./connect.sh demo sdf   (record asciinema demo)"
   echo ""
 }
 
@@ -644,6 +649,105 @@ list_systems() {
 case "${1:-}" in
   list|ls|--list)
     list_systems
+    ;;
+  probe|scan)
+    shift
+    SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+    if [ -x "$SCRIPT_DIR/probes/service-scan.sh" ]; then
+      exec "$SCRIPT_DIR/probes/service-scan.sh" "$@"
+    else
+      echo -e "${RED}Error: probes/service-scan.sh not found${NC}"
+      echo "Run: gh repo clone or check your working directory."
+      exit 1
+    fi
+    ;;
+  banner)
+    shift
+    SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+    if [ -x "$SCRIPT_DIR/probes/banner.exp" ]; then
+      if [ $# -lt 1 ]; then
+        echo -e "${YELLOW}Usage:${NC} $0 banner <system-name>"
+        echo "Captures the welcome banner from a system."
+        echo "Examples:"
+        echo "  $0 banner sdf"
+        echo "  $0 banner telehack"
+        echo "  $0 banner dict-org"
+        exit 0
+      fi
+      name="$1"
+      if found=$(get_sys "$name"); then
+        IFS='|' read -r n c d h cmd <<< "$found"
+        echo -e "${CYAN}Capturing banner for: ${BOLD}${n}${NC}"
+        echo ""
+        OUT="$SCRIPT_DIR/screenshots/banners/${n}-banner.txt"
+        mkdir -p "$SCRIPT_DIR/screenshots/banners"
+        # Parse the command to extract host, port, type
+        banner_args=()
+        if [[ "$cmd" == ssh* ]]; then
+          # ssh -l user host or ssh host
+          if [[ "$cmd" =~ ssh\ (-l\ [[:alnum:]_]+\ )?([a-zA-Z0-9._-]+) ]]; then
+            banner_args=("${BASH_REMATCH[2]}" "22" "ssh")
+          fi
+        elif [[ "$cmd" == telnet* ]]; then
+          # telnet host or telnet host port
+          if [[ "$cmd" =~ telnet\ ([a-zA-Z0-9._-]+)(\ ([0-9]+))? ]]; then
+            th="${BASH_REMATCH[1]}"
+            tp="${BASH_REMATCH[3]:-23}"
+            banner_args=("$th" "$tp" "telnet")
+          fi
+        elif [[ "$cmd" == *finger* ]]; then
+          if [[ "$cmd" =~ @([a-zA-Z0-9._-]+) ]]; then
+            banner_args=("${BASH_REMATCH[1]}" "79" "finger")
+          fi
+        elif [[ "$cmd" == */dev/tcp/* ]]; then
+          if [[ "$cmd" =~ /dev/tcp/([^/]+)/([0-9]+) ]]; then
+            banner_args=("${BASH_REMATCH[1]}" "${BASH_REMATCH[2]}" "raw")
+          fi
+        fi
+        if [ ${#banner_args[@]} -eq 0 ]; then
+          echo -e "${RED}Cannot parse connection info for '$n'${NC}"
+          echo -e "${YELLOW}Command:${NC} $cmd"
+          exit 1
+        fi
+        exec "$SCRIPT_DIR/probes/banner.exp" "${banner_args[@]}" "$OUT"
+      else
+        echo -e "${RED}Unknown system: ${name}${NC}"
+        exit 1
+      fi
+    else
+      echo -e "${RED}Error: probes/banner.exp not found${NC}"
+      exit 1
+    fi
+    ;;
+  register)
+    shift
+    SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+    if [ $# -lt 1 ]; then
+      echo -e "${YELLOW}Usage:${NC} $0 register <sdf|grex>"
+      echo "Attempts to register a demo account on a pubnix."
+      exit 0
+    fi
+    case "$1" in
+      sdf|grex)
+        script="$SCRIPT_DIR/probes/register-$1.exp"
+        if [ -x "$script" ]; then
+          OUT="$SCRIPT_DIR/screenshots/register-$1-output.txt"
+          exec "$script" "$OUT"
+        else
+          echo -e "${RED}Error: $script not found${NC}"
+          exit 1
+        fi
+        ;;
+      *)
+        echo -e "${RED}Unknown: $1 (try 'sdf' or 'grex')${NC}"
+        exit 1
+        ;;
+    esac
+    ;;
+  demo)
+    shift
+    SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+    exec "$SCRIPT_DIR/probes/capture-demo.sh" "$@"
     ;;
   ""|menu|interactive)
     interactive_menu

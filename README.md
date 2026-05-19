@@ -555,6 +555,18 @@ Instant Whip Foods runs chargen, qotd, and daytime services. Chargen
 generates a endless stream of ASCII characters — was used for testing
 in the early internet. A piece of internet history still running.
 
+### DICT Dictionary Server (dict.org)
+```
+Host:       dict.dict.org
+Access:     T
+Services:   DICT protocol (:2628)
+```
+RFC 2229 dictionary server with 166+ databases including WordNet,
+the Jargon File, FOLDOC (Free On-Line Dictionary of Computing), and
+GCIDE. A classic internet service still running.
+`telnet dict.dict.org 2628` then type `SHOW DB` to list databases,
+or `DEFINE jargon <word>` to look up jargon terms.
+
 ### UH Webcams
 Host: `https://webcams.uh.edu` — University of Houston public webcams.
 A classic public webcam since the early days of the web.

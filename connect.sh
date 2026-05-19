@@ -426,6 +426,11 @@ add_system "chargen" "Fun" \
   "Instant Whip Foods runs an old-school chargen service. ASCII characters." \
   "bash -c 'exec 3<>/dev/tcp/74.218.70.5/19; head -c 200 <&3; exec 3<&-'"
 
+add_system "dict-org" "Fun" \
+  "dict.org — classic DICT dictionary server (RFC 2229). 166+ databases." \
+  "Use: ${BOLD}telnet dict.dict.org 2628${NC}. Has WordNet, Jargon File, FOLDOC, GCIDE, and more. Try 'SHOW DB'." \
+  "telnet dict.dict.org 2628"
+
 # ─── System lookup ──────────────────────────────────────────────────────────
 
 get_sys() {
